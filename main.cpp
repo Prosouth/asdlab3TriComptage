@@ -27,32 +27,35 @@ using namespace std;
 //
 // A COMPLETER
 
-template < typename RandomAccessIterator , typename T>
+template < typename RandomAccessIterator>
 void countingSort( RandomAccessIterator begin,
                   RandomAccessIterator end )
 {
     
-    vector<T> tabValeurATrier(begin, end); //tableau des valeurs à trier
-    
-    vector<T> tabComptage(tabValeurATrier.size(), 0);   // tableau de comptage des occurrences initialisé à 0    
-    
+    vector<int> tabValeurATrier(begin, end); //tableau des valeurs à trier
+    vector<int> tabComptage(tabValeurATrier.size(), 0);   // tableau de comptage des occurrences initialisé à 0    
+    int x = 0;
     
     //remplissage des occurences du tableau de comptage
-    
-    for(auto i = tabComptage.begin(); i != tabComptage.end(); i++)
+    for(size_t i = 0 ; i <= tabValeurATrier.size(); i++)
     {
-        tabComptage.at(tabValeurATrier.at(i))++; 
+        tabComptage[tabValeurATrier[i]]++; 
     }
     
     //création tableau trié
-    for(auto i = tabComptage.begin(); i != tabComptage.end(); i++)
+    for(size_t i = 0 ; i <= tabValeurATrier.size(); i++)
     {    
-        for(size_t j = 0 ; j <= tabComptage.at(i) ; j++)
+        for(size_t j = 0 ; j <= tabComptage[i] ; j++)
         {
-           tabComptage.at(j) = *i;
+           tabValeurATrier[j] = i;
         }
     }
     
+    // Ecrire dans le tableau initial en utilisant les itérateurs
+    for(auto i = begin; i != end(); ++i)
+    {
+        *i = tabValeurATrier[x++];
+    }
 }
 
 // display
