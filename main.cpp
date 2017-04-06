@@ -33,16 +33,16 @@ template < typename RandomAccessIterator>
 void countingSort( RandomAccessIterator begin,
                   RandomAccessIterator end )
 {
+    //on cherche les éléments min et max de notre vector
     int min = *(min_element(begin, end));
     int max = *(max_element(begin, end));    
+    //on définit la taille de notre vector en prenant en compte le fait qu'on puisse avoir des nombres négatifs à trier
     const size_t TAILLE_TAB = max - min + 1;
-    size_t x = 0; //permettra d'itérer sur le vector
+    //permettra d'itérer sur le vector
+    size_t x = 0;     
     
-    vector<int> tabValeurATrier(begin, end); //tableau des valeurs à trier
-
-    vector<int> tabTrie(tabValeurATrier.size(), 0);       //vector de 0 rempli 
-    
-    vector<int> tabComptage(max-min+1);      //remplissage du tableau de comptage de 0    
+     //remplissage du tableau de comptage de 0 
+    vector<int> tabComptage(TAILLE_TAB);        
     
     //remplissage du nombre d'occurences
     for (auto i = begin; i != end; i++) 
@@ -56,6 +56,7 @@ void countingSort( RandomAccessIterator begin,
         {
             *(begin + x++) = i + min;
         }
+        //affichage des éléments
         if(tabComptage.at(i) > 0)
         {
             cout << *(begin + x - 1) << ": " << tabComptage.at(i) << endl;
