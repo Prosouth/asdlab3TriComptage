@@ -34,41 +34,35 @@ void countingSort( RandomAccessIterator begin,
                   RandomAccessIterator end )
 {
     int min = *(min_element(begin, end));
-    int max = *(max_element(begin, end));
+    int max = *(max_element(begin, end));    
+    const size_t TAILLE_TAB = max - min + 1;
+    size_t x = 0; //permettra d'itérer sur le vector
     
     vector<int> tabValeurATrier(begin, end); //tableau des valeurs à trier
 
     vector<int> tabTrie(tabValeurATrier.size(), 0);       //vector de 0 rempli 
     
-    int tabComptage[max];
+    vector<int> tabComptage(max-min+1);      //remplissage du tableau de comptage de 0    
     
-    
-    // Initialisation du tableau de comptage à 0
-    for( int i = min ; i <= max ; i++)
+    //remplissage du nombre d'occurences
+    for (auto i = begin; i != end; i++) 
     {
-        tabComptage[i] = 0;
+        tabComptage.at(*i - min)++;
     }
 
-    //remplissage des occurences du tableau de comptage
-    for(size_t i = 0 ; i < tabComptage[max]; i++)
+    for (size_t i = 0; i < TAILLE_TAB; i++) 
     {
-        tabComptage[tabTrie[i]]++; 
-    }
-    
-    //création tableau trié
-    for(int i = 0 ; i <= tabValeurATrier.size() ; i++)
-    {    
-        for(size_t j = 0 ; j < max ; j++)
+        for (size_t j = 0; j < tabComptage.at(i); j++)
         {
-           tabTrie[j] = *(begin+i);
+            *(begin + x++) = i + min;
+        }
+        if(tabComptage.at(i) > 0)
+        {
+            cout << *(begin + x - 1) << ": " << tabComptage.at(i) << endl;
         }
     }
     
-    // Ecrire dans le tableau initial en utilisant les itérateurs
-    for(size_t x = 0 ; x < tabTrie.size() ; x++)
-    {
-        *(begin+x) = tabTrie[x];   
-    }
+ 
 }
 
 // display
