@@ -33,28 +33,28 @@ void countingSort( RandomAccessIterator begin,
 {
     
     vector<int> tabValeurATrier(begin, end); //tableau des valeurs à trier
-    vector<int> tabComptage(tabValeurATrier.size(), 0);   // tableau de comptage des occurrences initialisé à 0    
-    int x = 0;
+    vector<int> tabComptage(tabValeurATrier.size(), 0);   // vector de comptage des occurrences initialisé à 0    
+    vector<int> tabTrie(tabValeurATrier.size(), 0);       //vector de 0 rempli 
     
     //remplissage des occurences du tableau de comptage
-    for(size_t i = 0 ; i <= tabValeurATrier.size(); i++)
+    for(size_t i = 0 ; i < tabValeurATrier.size(); i++)
     {
         tabComptage[tabValeurATrier[i]]++; 
     }
     
     //création tableau trié
-    for(size_t i = 0 ; i <= tabValeurATrier.size(); i++)
+    for(size_t i = 0 ; i < tabValeurATrier.size(); i++)
     {    
-        for(size_t j = 0 ; j <= tabComptage[i] ; j++)
+        for(size_t j = 0 ; j < tabComptage[i] ; j++)
         {
-           tabValeurATrier[j] = i;
+           tabTrie[j] = *(begin+i);
         }
     }
     
     // Ecrire dans le tableau initial en utilisant les itérateurs
-    for(auto i = begin; i != end(); ++i)
+    for(size_t x = 0 ; x < tabTrie.size() ; x++)
     {
-        *i = tabValeurATrier[x++];
+        *(begin+x) = tabTrie[x];   
     }
 }
 
@@ -85,13 +85,13 @@ int main(int argc, const char * argv[]) {
     
     // std::string
     
-    string s("EXEMPLE_DE_TRI_COMPTAGE");
-    display(s.begin(),s.end());
-    
-    countingSort(s.begin(),s.end());
-    
-    display(s.begin(),s.end());
-    
+//    string s("EXEMPLE_DE_TRI_COMPTAGE");
+//    display(s.begin(),s.end());
+//    
+//    countingSort(s.begin(),s.end());
+//    
+//    display(s.begin(),s.end());
+//    
     // C array
     
     int array[] = { 1, 3, 1, 1, 2, 1, 0, 1, 3, -1 };
@@ -104,13 +104,13 @@ int main(int argc, const char * argv[]) {
     
     // std::vector
     
-    vector<int> vd {  7, 3, 6, 1, 9, 7, 3, 3, 3, 6, 1, 2, 0, 10, 12, -3 };
-    cout << endl;
-    display(vd.begin(),vd.end());
-    
-    countingSort(vd.begin(),vd.end());
-    
-    display(vd.begin(),vd.end());
+//    vector<int> vd {  7, 3, 6, 1, 9, 7, 3, 3, 3, 6, 1, 2, 0, 10, 12, -3 };
+//    cout << endl;
+//    display(vd.begin(),vd.end());
+//    
+//    countingSort(vd.begin(),vd.end());
+//    
+//    display(vd.begin(),vd.end());
     
     return 0;
     
