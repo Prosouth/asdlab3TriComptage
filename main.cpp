@@ -26,8 +26,6 @@ using namespace std;
 // compte > 0 le nombre d'occurence sous la forme
 // E: C
 // où E est l'élément et C le compte.
-//
-// A COMPLETER
 
 template < typename RandomAccessIterator>
 void countingSort( RandomAccessIterator begin,
