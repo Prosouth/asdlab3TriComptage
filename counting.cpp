@@ -12,7 +12,6 @@
 #include <string>
 #include <algorithm>
 
-
 using namespace std;
 
 // countingSort
@@ -60,8 +59,6 @@ void countingSort( RandomAccessIterator begin,
             cout << *(begin + x - 1) << ": " << tabComptage.at(i) << endl;
         }
     }
-    
- 
 }
 
 // display
